@@ -1,0 +1,21 @@
+{
+  "name": "AI-Import",
+  "id": "1638452344903588512",
+  "api": "1.0.0",
+  "main": "code.js",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "documentAccess": "dynamic-page",
+  "editorType": [
+    "figma",
+    "figjam",
+    "slides",
+    "buzz"
+  ],
+  "networkAccess": {
+    "allowedDomains": [
+      "http://localhost:8787"
+    ],
+    "reasoning": "The plugin sends local AI, EPS, and PDF files to a locally running converter service and receives SVG for import into Figma."
+  }
+}

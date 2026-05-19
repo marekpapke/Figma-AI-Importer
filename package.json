@@ -1,0 +1,29 @@
+{
+  "name": "figma-ai-importer",
+  "version": "0.1.0",
+  "description": "Figma Illustrator importer with local AI/EPS/PDF conversion helper",
+  "type": "module",
+  "main": "code.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "watch": "npm run build -- --watch"
+  },
+  "author": "GERDON DESIGN",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@figma/eslint-plugin-figma-plugins": "*",
+    "@figma/plugin-typings": "*",
+    "eslint": "^9.39.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.1"
+  }
+}
