@@ -1,40 +1,92 @@
-Below are the steps to get your plugin running. You can also find instructions at:
+![License](https://img.shields.io/github/license/marekpapke/figma-ai-importer)
+![Version](https://img.shields.io/github/package-json/v/marekpapke/figma-ai-importer)
 
-  https://www.figma.com/plugin-docs/plugin-quickstart-guide/
+# 🎨 Figma AI Importer
 
-This plugin template uses Typescript and NPM, two standard tools in creating JavaScript applications.
+Import `.ai`, `.eps`, `.pdf`, and `.svg` files into Figma.
 
-First, download Node.js which comes with NPM. This will allow you to install TypeScript and other
-libraries. You can find the download link here:
+The plugin uses a small local helper service powered by Inkscape to convert Illustrator/PDF/EPS files to SVG, then imports the result into Figma as editable vector layers.
 
-  https://nodejs.org/en/download/
+Figma plugins cannot natively import Adobe Illustrator files.
 
-Next, install TypeScript using the command:
+## 🧠 How it works
 
-  npm install -g typescript
+```text
+.ai / .eps / .pdf
+        ↓
+ local converter
+        ↓
+      SVG
+        ↓
+     Figma
+```
 
-Finally, in the directory of your plugin, get the latest type definitions for the plugin API by running:
+## 📸 Screenshot
 
-  npm install --save-dev @figma/plugin-typings
+![Figma AI Importer UI](assets/screenshot.png)
 
-If you are familiar with JavaScript, TypeScript will look very familiar. In fact, valid JavaScript code
-is already valid Typescript code.
+## ✨ Features
 
-TypeScript adds type annotations to variables. This allows code editors such as Visual Studio Code
-to provide information about the Figma API while you are writing code, as well as help catch bugs
-you previously didn't notice.
+- ⚡ Direct file import inside Figma
+- 📂 Supports `.ai`, `.eps`, `.pdf`, `.svg`
+- 🛠️ Local conversion helper
+- 🔒 No cloud upload
+- 🎯 Works best with PDF-compatible Illustrator files
 
-For more information, visit https://www.typescriptlang.org/
+## 📦 Requirements
 
-Using TypeScript requires a compiler to convert TypeScript (code.ts) into JavaScript (code.js)
-for the browser to run.
+- Node.js
+- Inkscape
+- Figma Desktop or Figma in browser
+- PDF-compatible Illustrator files recommended
 
-We recommend writing TypeScript code using Visual Studio code:
+## 🚀 Install
 
-1. Download Visual Studio Code if you haven't already: https://code.visualstudio.com/.
-2. Open this directory in Visual Studio Code.
-3. Compile TypeScript to JavaScript: Run the "Terminal > Run Build Task..." menu item,
-    then select "npm: watch". You will have to do this again every time
-    you reopen Visual Studio Code.
+Install dependencies:
 
-That's it! Visual Studio Code will regenerate the JavaScript file every time you save.
+    npm install
+
+Start the local converter:
+
+    npm start
+
+The converter runs at:
+
+    http://localhost:55178/convert
+
+### Install Inkscape (macOS)
+
+    brew install --cask inkscape
+
+## 🧩 Figma plugin setup
+
+In Figma:
+
+1. Open Plugins
+2. Development
+3. Import plugin from manifest
+4. Select `manifest.json`
+
+## 🍎 Auto-start on macOS
+
+Copy the LaunchAgent example:
+
+    mkdir -p ~/Library/LaunchAgents
+    cp launchagents/tv.gerdon.ai-import-converter.plist.example ~/Library/LaunchAgents/tv.gerdon.ai-import-converter.plist
+    launchctl load ~/Library/LaunchAgents/tv.gerdon.ai-import-converter.plist
+
+Check if it runs:
+
+    curl http://localhost:55178/health
+
+## 🔐 Privacy
+
+Files are sent only to the local converter running on your own machine. Nothing is uploaded to a remote server.
+
+## ⚠️ Limitations
+
+Native Illustrator files vary. The best results are with PDF-compatible `.ai` files. Some proprietary or very old Illustrator files may not convert correctly.
+
+## 📄 License
+
+MIT
